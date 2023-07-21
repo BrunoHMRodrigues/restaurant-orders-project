@@ -7,16 +7,18 @@ import pytest
 
 def test_dish():
     LASANHA = 'lasanha'
+    MACARRONADA = 'macarronada'
     LASANHA_PRICE = 26.00
+    MACARRONADA_PRICE = 30.20
     dish1 = Dish(LASANHA, LASANHA_PRICE)
-    dish2 = Dish(LASANHA, 30.20)
+    dish2 = Dish(MACARRONADA, MACARRONADA_PRICE)
 
     assert dish1.name == LASANHA
     assert dish1.price == LASANHA_PRICE
     assert dish1.recipe == {}
 
     # o método mágico __repr__ funcione como esperado;
-    assert repr(dish1) == f'Dish("{LASANHA}", R${LASANHA_PRICE:.2f})'
+    assert repr(dish1) == f"Dish('{LASANHA}', R${LASANHA_PRICE:.2f})"
     assert repr(dish1) == repr(dish1)
     assert repr(dish1) != repr(dish2)
 
@@ -25,8 +27,8 @@ def test_dish():
     assert dish1 != dish2
 
     # o método mágico __hash__ funcione como esperado.
-    assert hash(repr(dish1)) == hash(repr(dish1))
-    assert hash(repr(dish1)) != hash(repr(dish2))
+    assert hash(dish1) == hash(dish1)
+    assert hash(dish1) != hash(dish2)
 
     # Testando o método add_ingredient_dependency
     ingredient_presunto = Ingredient("presunto")

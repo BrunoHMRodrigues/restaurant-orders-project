@@ -26,12 +26,12 @@ def test_ingredient():
     assert ingredient3.restrictions == farinha_expected_restrictions
 
     # o método mágico __hash__ funcione como esperado.
-    assert hash(ingredient1.name) == hash(ingredient2.name)
-    assert hash(ingredient1.name) != hash(ingredient3.name)
+    assert hash(ingredient1) == hash(ingredient2)
+    assert hash(ingredient1) != hash(ingredient3)
 
     # o método mágico __repr__ funcione como esperado;
-    assert repr(ingredient1) == 'Ingredient("bacon")'
-    assert repr(ingredient3) == 'Ingredient("farinha")'
+    assert repr(ingredient1) == "Ingredient('bacon')"
+    assert repr(ingredient3) == "Ingredient('farinha')"
 
     # o método mágico __eq__ funcione como esperado;
     assert ingredient1 == ingredient2
