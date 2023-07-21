@@ -30,12 +30,14 @@ class MenuBuilder:
         for dish in self.menu_data.dishes:
             # if restriction not in dish.get_ingredients().restrictions:
             if not any(restriction in ingredient.restrictions for ingredient in dish.get_ingredients()):
-                dish_info = {
-                    "dish_name": dish.name,
-                    "ingredients": dish.get_ingredients(),
-                    "price": dish.price,
-                    "restrictions": dish.get_restrictions()
-                }
-                main_menu.append(dish_info)
+                recipe = dish.recipe
+                if self.inventory.check_recipe_availability(recipe):
+                    dish_info = {
+                        "dish_name": dish.name,
+                        "ingredients": dish.get_ingredients(),
+                        "price": dish.price,
+                        "restrictions": dish.get_restrictions()
+                    }
+                    main_menu.append(dish_info)
         return main_menu
 
